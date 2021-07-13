@@ -1,0 +1,49 @@
+﻿@page
+@using Blazor_WASM_Server.Server
+@using Microsoft.Extensions.Options
+@model Blazor_WASM_Server.Server.Pages.ErrorModel
+
+@inject IOptions<HybridOptions> HybridOptions
+@{
+    var hybridType = HybridOptions?.Value?.HybridType ?? HybridType.WebAssembly;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Sabre PM</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="_content/Syncfusion.Blazor.Themes/bootstrap4.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="app">
+    @if (hybridType == HybridType.ServerSide)
+    {
+        <component type="typeof(WebBlazor.App)" render-mode="ServerPrerendered" />
+        <persist-component-state />
+        <script src="_framework/blazor.server.js"></script>
+    }
+    else if (hybridType == HybridType.WebAssembly)
+    {
+        <div id="app">Loading...</div>
+        <script src="_framework/blazor.webassembly.js"></script>
+    }
+
+</div>
+@*    <script src="blazor.hybrid.js1"></script>*@
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+</body>
+</html>

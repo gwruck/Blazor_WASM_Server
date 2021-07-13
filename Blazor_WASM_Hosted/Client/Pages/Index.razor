@@ -1,0 +1,21 @@
+﻿@page "/"
+
+@inject WebApiClient api
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+
+
+    protected override void OnInitialized()
+    {
+        if (api == null) throw new NullReferenceException("WebApiContext not set by Dependency Injection");
+
+        base.OnInitialized();
+    }
+
+}
