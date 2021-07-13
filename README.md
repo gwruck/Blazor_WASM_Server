@@ -23,11 +23,15 @@ Process to create this example:
 7. Inject WebApiClient into Index.razor and confirm it has been set
 
 Process to run:
+
 8. Choose mode as WebAssembly in [Blazor_WASM_Server.Server].HybridOptions    (in Startup file)
 9. Execute Server app and observe that app runs as expected
 10. Choose mode as ServerSide, execute and observe error 
+      
       "InvalidOperationException: 
+      
       Cannot provide a value for property 'api' on type 'Blazor_WASM_Server.Client.Pages.Index'. 
+      
       There is no registered service of type 'Blazor_WASM_Server.Client.WebApiClient'.
 
 
