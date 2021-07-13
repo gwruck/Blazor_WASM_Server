@@ -1,5 +1,8 @@
 # Blazor_WASM_Server
 Blazor Hybrid WASM and Server
+Refer:  https://stackoverflow.com/questions/68362521/blazor-app-run-as-wasm-or-server-cannot-get-dependency-injection-working-in-ser
+
+...this Repo has been updated with solution from Shaun Curtis in SO thread.
 
 This is an attempt to create a single Blazor app that can either be run as Webassembly (hosted) or Server.
 
