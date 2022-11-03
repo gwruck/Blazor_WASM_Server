@@ -1,40 +1,41 @@
 # Blazor_WASM_Server
 Blazor Hybrid WASM and Server
-Refer:  https://stackoverflow.com/questions/68362521/blazor-app-run-as-wasm-or-server-cannot-get-dependency-injection-working-in-ser
+Refer:  https://stackoverflow.com/questions/74230471/blazor-wasm-hosted-mixed-with-blazor-server-pages/74230472#74230472
 
-...this Repo has been updated with solution from Shaun Curtis in SO thread.
+This repository provides a solution how it is possible to mix Blazor Server and Web Assembly pages in multiple ways in the same solution.  The goal is to enable WASM or Server pages to be created and served at will from a single solution.
 
-This is an attempt to create a single Blazor app that can either be run as Webassembly (hosted) or Server.
+The goal was also to ensure that all parts of the solution are authenticated using Azure AD.
 
-Goal is to be able to have a single switch in Server app that enables development/debugging to use Blazor Server due to ease of use and then use WebAssembly for final deployment.
+The solution has 4 projects:
+ - Blazor_WASM_Server.ClientServer   (based upon  Sdk="Microsoft.NET.Sdk.Web")
+ - Blazor_WASM_Server.ClientWASM     (based upon Sdk="Microsoft.NET.Sdk.BlazorWebAssembly")
+ - Blazor_WASM_Server.Host           (based upon Sdk="Microsoft.NET.Sdk.Web")  This has been renamed from the template project name of Server for clarity
+ - Blazor_WASM_Server.Shared         (based upon Sdk="Microsoft.NET.Sdk")
+ 
+I have tried to annotate changes from the template solution using a common string of ***, so if you search for this you will find the annotations.
 
-Issue is that cannot get Dependency Injection working in Server mode.
+There are a fair few subtleties, that were required to get everything working - especially around the authentication.  I tried to annotate these where I could.
 
-Process to create this example:
-1. Blazor WASM app was created from standard template.
-2. Generally followed example "HybridBlazor".  https://itnext.io/blazor-switching-server-and-webassembly-at-runtime-d65c25fd4d8
+The main issue that I'd like to resolve in this solution is that it requires 2 signins.  The first for the WASM page, which is understandable.  The second is at the time of first navigation to a Server page.  I will eventually work out how to implment this as a single login.
 
-[Blazor_WASM_Server.Server]
+I used some concepts that were contained in the following @ShaunCurtis repo - particularly around the use of the MapWhen code in the Host\Program.cs.
+https://github.com/ShaunCurtis/AllinOne
 
-3. Added Hybrid options flag in [Blazor_WASM_Server.Server].HybridOptions    (in Startup file)
-4. Added _Host page in [Blazor_WASM_Server.Server], with options for either WASM or Server
+In order to run this solution, 
 
-[Blazor_WASM_Server.Client]
+1. Register 2 applications in Azure AD (one web and the other SPA)
+2. Update the registration details in 
+     - Blazor_WASM_Server.ClientWASM/wwwroot/appsettings.json
+     - Blazor_WASM_Server.Host/appsettings.json
+3. Set Blazor_WASM_Server.Host as the Startup project and Debug the solution
+4. Press the [Log in WASM] button and enter your Microsoft credentials
+![image](https://user-images.githubusercontent.com/15906406/199649857-7798ed61-0bf2-410a-b596-633807b992f1.png)
 
-5. Added WebApiClient to be used as a Typed HttpClient
-6. Register the service in Program.Main
-7. Inject WebApiClient into Index.razor and confirm it has been set
+5. Navigate through the side bar to view the different page scenarios.  Show the Dev Tools to inspect the html.
+![image](https://user-images.githubusercontent.com/15906406/199652388-88c0a5e8-db04-4600-9884-c6af1513d5bb.png)
 
-Process to run:
+![image](https://user-images.githubusercontent.com/15906406/199652307-2ca28d27-597a-4fb1-840e-ccc36c6ff810.png)
 
-8. Choose mode as WebAssembly in [Blazor_WASM_Server.Server].HybridOptions    (in Startup file)
-9. Execute Server app and observe that app runs as expected
-10. Choose mode as ServerSide, execute and observe error 
-      
-      "InvalidOperationException: 
-      
-      Cannot provide a value for property 'api' on type 'Blazor_WASM_Server.Client.Pages.Index'. 
-      
-      There is no registered service of type 'Blazor_WASM_Server.Client.WebApiClient'.
+
 
 
