@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_WASM_Server.Shared",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_WASM_Server.Host", "Blazor_WASM_Server\Host\Blazor_WASM_Server.Host.csproj", "{54546184-E53F-46B9-9B18-B4134858184D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_WASM_Server.SharedWeb", "Blazor_WASM_Server\SharedWeb\Blazor_WASM_Server.SharedWeb.csproj", "{924A9CCC-665D-4E61-A27C-BD58D7D9C6D4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_WASM_Server.ClientServer", "Blazor_WASM_Server\ClientServer\Blazor_WASM_Server.ClientServer.csproj", "{1F54620A-49A1-4C28-9F91-0CCDBF4E1315}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_WASM_Server.ClientWASM", "Blazor_WASM_Server\ClientWASM\Blazor_WASM_Server.ClientWASM.csproj", "{C44EA5DF-E3A8-46E1-9B3D-F01D2783C12A}"
@@ -27,10 +25,6 @@ Global
 		{54546184-E53F-46B9-9B18-B4134858184D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54546184-E53F-46B9-9B18-B4134858184D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54546184-E53F-46B9-9B18-B4134858184D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{924A9CCC-665D-4E61-A27C-BD58D7D9C6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{924A9CCC-665D-4E61-A27C-BD58D7D9C6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{924A9CCC-665D-4E61-A27C-BD58D7D9C6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{924A9CCC-665D-4E61-A27C-BD58D7D9C6D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F54620A-49A1-4C28-9F91-0CCDBF4E1315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F54620A-49A1-4C28-9F91-0CCDBF4E1315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F54620A-49A1-4C28-9F91-0CCDBF4E1315}.Release|Any CPU.ActiveCfg = Release|Any CPU

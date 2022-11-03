@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ClientServer\Blazor_WASM_Server.ClientServer.csproj" />
     <ProjectReference Include="..\ClientWASM\Blazor_WASM_Server.ClientWASM.csproj" />
-    <ProjectReference Include="..\SharedWeb\Blazor_WASM_Server.SharedWeb.csproj" />
     <ProjectReference Include="..\Shared\Blazor_WASM_Server.Shared.csproj" />
   </ItemGroup>
 
