@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager navMan
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Blazor_WASM_Server</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<AuthorizeView>
+    <Authorized>
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu" style="width: 300px;">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> WASM Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> WASM Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> WASM Fetch data
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWASM" @onclick="HandleSvrWASM">
+                    <span class="oi oi-home" aria-hidden="true"></span> Server WASM Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWASM/counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Server WASM Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWASM/fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Server WASM Fetch data
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWeb">
+                    <span class="oi oi-home" aria-hidden="true" @onclick="HandleSvrWeb"></span> Server Web Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWeb/counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Server Web Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrWeb/fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Server Web Fetch data
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrHost">
+                    <span class="oi oi-home" aria-hidden="true" @onclick="HandleSvrHost"></span> Host Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrHost/counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Host Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="svrHost/fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Host Fetch data
+                </NavLink>
+            </li>
+ 
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="TestIFrame">
+                    <span class="oi oi-list-rich" aria-hidden="true" @onclick="HandleIFrame"></span> Test Server In IFrame
+                </NavLink>
+            </li>
+
+        </ul>
+    </div>
+    </Authorized>
+</AuthorizeView>
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void HandleSvrWASM()
+    {
+        navMan.NavigateTo("svrWASM", forceLoad: true);
+        StateHasChanged();
+    }
+
+    private void HandleSvrWeb()
+    {
+        navMan.NavigateTo("svrWeb", forceLoad: true);
+        StateHasChanged();
+    }
+
+    private void HandleSvrHost()
+    {
+        navMan.NavigateTo("svrHost", forceLoad:true);
+        StateHasChanged();
+    }
+
+    private void HandleIFrame()
+    {
+        navMan.NavigateTo("svrWasm/TestIFrame", forceLoad: true);
+        StateHasChanged();
+    }
+
+}

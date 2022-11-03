@@ -1,0 +1,69 @@
+﻿@using Blazor_WASM_Server.ClientWASM.Shared
+
+@using Blazor_WASM_Server.Shared
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager navMan
+
+<CascadingAuthenticationState>
+    <CascadingValue TValue="BlazorModes?" Value="blazorMode" Name="BlazorMode">
+        <Router AppAssembly="@typeof(AppWASM).Assembly">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                    <NotAuthorized>
+                        @if (context.User.Identity?.IsAuthenticated != true)
+                        {
+                            <RedirectToLogin/>
+                        }
+                        else
+                        {
+                            <p role="alert">You are not authorized to access this resource.</p>
+                        }
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+            </Found>
+            <NotFound>
+                <PageTitle>Not found</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p role="alert">Sorry, there's nothing at this address.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingValue>
+</CascadingAuthenticationState>
+
+@code
+{
+    private BlazorModes? blazorMode = BlazorModes.WASM;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SetBlazorMode();  //***Determine if we are running in Server or WASM mode
+        await base.OnInitializedAsync();
+    }
+
+    private async Task SetBlazorMode()
+    {
+        var baseUri = navMan.BaseUri;
+        if (baseUri.Length < navMan.Uri.Length)
+        {
+            var uriPath = navMan.Uri.Replace(baseUri, "");
+            if (uriPath.StartsWith("svrWASM"))
+            {
+                blazorMode = BlazorModes.WASMServer;
+            }
+            else if(uriPath.StartsWith("svrWeb"))
+            {
+                blazorMode = BlazorModes.Server;
+            }
+            else if (uriPath.StartsWith("svrHost"))
+            {
+                blazorMode = BlazorModes.Host;
+            }
+            else
+            {
+                blazorMode = BlazorModes.WASM;
+            }
+        }
+    }
+}

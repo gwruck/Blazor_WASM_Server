@@ -1,0 +1,17 @@
+﻿@****Ths is a standard _Host file from a Blazor Server project*@
+@****Note the svrWASM prefix*@
+
+@page "/svrWeb"
+@using Blazor_WASM_Server.ClientServer
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@*@attribute [Authorize]*@
+
+@namespace Blazor_WASM_Server.Host.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout_svrWeb";
+}
+
+@****Note that it uses a different App as the Client side components do*@
+<component type="typeof(AppServer)" render-mode="ServerPrerendered" />

@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>	  
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>9105bf22-78b9-4930-aa18-def432c807a7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.4" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClientServer\Blazor_WASM_Server.ClientServer.csproj" />
+    <ProjectReference Include="..\ClientWASM\Blazor_WASM_Server.ClientWASM.csproj" />
+    <ProjectReference Include="..\SharedWeb\Blazor_WASM_Server.SharedWeb.csproj" />
+    <ProjectReference Include="..\Shared\Blazor_WASM_Server.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+
+
+</Project>

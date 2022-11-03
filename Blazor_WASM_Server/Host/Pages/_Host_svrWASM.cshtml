@@ -1,0 +1,17 @@
+﻿@****Ths is a standard _Host file from a Blazor Server project*@
+@****Note the svrWASM prefix*@
+
+@page "/svrWASM"
+@using Blazor_WASM_Server.ClientServer
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@*@attribute [Authorize]*@
+
+@namespace Blazor_WASM_Server.Host.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout_svrWASM";
+}
+
+@****Note this is a bit tricky.  Use AppServer rather than AppWASM*@
+<component type="typeof(AppServer)" render-mode="ServerPrerendered" />

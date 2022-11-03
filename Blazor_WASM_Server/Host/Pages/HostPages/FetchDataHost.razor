@@ -1,0 +1,68 @@
+﻿
+@*Add a Host version of the page*@
+@page "/svrHost/fetchdata"
+
+@using System.Net.Http
+@using System.Net.Http.Json
+@using Blazor_WASM_Server.Shared
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Identity.Web
+@*@inject HttpClient Http*@
+
+@* ***Use the typed IHostHttpClient Interface so that we can change out for either the WASM or Server implementation*@
+@inject IHostHttpClient hostClient
+
+@attribute [Authorize]
+<AuthorizeView>
+    <Authorized>
+        <h1>Weather forecast</h1>
+
+        <p>This component demonstrates fetching data from the server.</p>
+
+        @if (forecasts == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var forecast in forecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <div>Please Login</div>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+    private WeatherForecast[] forecasts;
+    private string? data;
+    protected override async Task OnInitializedAsync()
+    {
+        var client = await hostClient.GetClientAsync();
+        
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
+    }
+
+}
