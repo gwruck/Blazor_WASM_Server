@@ -6,10 +6,9 @@ This repository provides a solution how it is possible to mix Blazor Server and 
 
 The goal was also to ensure that all parts of the solution are authenticated using Azure AD.
 
-The solution has 4 projects:
- - Blazor_WASM_Server.ClientServer   (based upon  Sdk="Microsoft.NET.Sdk.Web")
- - Blazor_WASM_Server.ClientWASM     (based upon Sdk="Microsoft.NET.Sdk.BlazorWebAssembly")
- - Blazor_WASM_Server.Host           (based upon Sdk="Microsoft.NET.Sdk.Web")  This has been renamed from the template project name of Server for clarity
+The solution has 3 projects:
+ - Blazor_WASM_Server.Client     (based upon Sdk="Microsoft.NET.Sdk.BlazorWebAssembly")
+ - Blazor_WASM_Server.Server           (based upon Sdk="Microsoft.NET.Sdk.Web")  
  - Blazor_WASM_Server.Shared         (based upon Sdk="Microsoft.NET.Sdk")
  
 I have tried to annotate changes from the template solution using a common string of ***, so if you search for this you will find the annotations.
