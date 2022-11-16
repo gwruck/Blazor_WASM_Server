@@ -3,7 +3,7 @@ using Blazor_WASM_Server.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Identity.Web;
 
-namespace Blazor_WASM_Server.Host
+namespace Blazor_WASM_Server.Server
 {
     public class HostHttpClient :IHostHttpClient
     {

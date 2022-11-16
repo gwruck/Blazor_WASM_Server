@@ -11,9 +11,10 @@ using Microsoft.Identity.Web.UI;
 using System.Net.Http;
 using System;
 using System.Linq;
-using Blazor_WASM_Server.Host;
+using Blazor_WASM_Server.Server;
 using Blazor_WASM_Server.Shared;
 using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -57,6 +58,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
+    IdentityModelEventSource.ShowPII = true;
     //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Glossary v1"));
 }
 else

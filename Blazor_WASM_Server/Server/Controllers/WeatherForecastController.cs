@@ -1,18 +1,13 @@
 ﻿using Blazor_WASM_Server.Shared;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Blazor_WASM_Server.Host.Controllers
+namespace Blazor_WASM_Server.Server.Controllers
 {
     [ApiController]
     //***Need to explicitly call out the authentication scheme
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[Controller]")]
     public class WeatherForecastController : ControllerBase
     {
