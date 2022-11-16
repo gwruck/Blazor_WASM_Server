@@ -1,0 +1,35 @@
+﻿
+@using Blazor_WASM_Server.Shared
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4 auth">
+            <div>Blazor Mode = @BlazorMode :</div>
+
+            @if (BlazorMode == BlazorModes.Server )
+            {
+                <LoginDisplayServer/>
+            }
+            else if (BlazorMode == BlazorModes.WASM)
+            {
+                <LoginDisplayWASM/>
+            }
+
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code
+{
+    [CascadingParameter(Name = "BlazorMode")]
+    private BlazorModes? BlazorMode { get; set; }
+}

@@ -2,8 +2,6 @@
 
 public enum BlazorModes
 {
-    WASM,  //  /
-    WASMServer,  // /srvWASM
-    Server, //srv
-    Host //srvHost
+    WASM,  
+    Server
 }

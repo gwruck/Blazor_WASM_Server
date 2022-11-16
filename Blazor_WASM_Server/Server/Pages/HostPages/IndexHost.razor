@@ -1,0 +1,22 @@
+﻿
+@*Add a Host version of the page*@
+@page "/svr" 
+@using Microsoft.AspNetCore.Components.Authorization
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello, world! - Host Server Project</h1>
+        <div>This series of pages demonstrates pages hosted in the Host project, and served using Blazor Server</div>
+        <br/>
+        Welcome to your new app.
+        <br />
+    </Authorized>
+    <NotAuthorized>
+        <h2>Please Login Again - This is the Blazor Server context</h2>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
